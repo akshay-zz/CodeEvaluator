@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace CodeEvaluator
 {
-    class ClsCommonUtil
+    class CommonUtil
     {
         public static string FindNextWordFromAfterAParticularWordFromCode(string codeText, string word)
         {

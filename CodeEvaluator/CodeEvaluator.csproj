@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helper\BasicCodeTemplate.cs" />
+    <Compile Include="BasicCodeTemplate.cs" />
     <Compile Include="Utils\ClsCommonUtil.cs" />
     <Compile Include="Helper\CodeCompiler.cs" />
     <Compile Include="CodeEvaluation.cs" />

@@ -35,7 +35,7 @@ public class CsharpUtil
         string nextWord = String.Empty;
         try
         {
-            nextWord = ClsCommonUtil.FindNextWordFromAfterAParticularWordFromCode(codeText, word);
+            nextWord = CommonUtil.FindNextWordFromAfterAParticularWordFromCode(codeText, word);
         }
         catch
         {
