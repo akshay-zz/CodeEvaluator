@@ -47,7 +47,8 @@ internal class CodeEvaluationInitiater
         return codeCompiler.Compile(programProperties.CodeText);
     }
 
-    private ExecutedCodeProperties CallCsharpExecuter(ProgramProperties programProperties, ExecutedCodeProperties executedCodeProperties)
+    private ExecutedCodeProperties CallCsharpExecuter(ProgramProperties programProperties,
+		ExecutedCodeProperties executedCodeProperties)
     {
         CsharpCodeExecuter csharpCodeExecuter = new CsharpCodeExecuter(programProperties, _excecutedCodeProperties);
         CodeExecuter codeExecuter = new CodeExecuter(csharpCodeExecuter);
@@ -57,7 +58,8 @@ internal class CodeEvaluationInitiater
     /// <summary>
     /// Compile & execute code, return compilation status, return error message for failure and result after successfull execution
     /// </summary>
-    public ExecutedCodeProperties InitiateCodeExecution(ProgramProperties programProperties, CompiledCodeProperties compiledCodeProperties)
+    public ExecutedCodeProperties InitiateCodeExecution(ProgramProperties programProperties,
+		CompiledCodeProperties compiledCodeProperties)
     {
         if (compiledCodeProperties == null)
         {

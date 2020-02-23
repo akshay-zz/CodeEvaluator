@@ -62,7 +62,10 @@ public class EvaluateTestCases
 		foreach (var item in expectedOutput)
 		{
 			string value;
-			if (actualOutput.TryGetValue(item.Key, out value) && ReplaceCarriageReturnWithNewline(item.Value) == ReplaceCarriageReturnWithNewline(actualOutput[item.Key]))
+
+			if (actualOutput.TryGetValue(item.Key, out value) && 
+				ReplaceCarriageReturnWithNewline(item.Value) == ReplaceCarriageReturnWithNewline(actualOutput[item.Key])
+			)
 			{
 				_ResultDictonary.Add(item.Key, true);
 				_MemoryCosumedDictonary.Add(item.Key, 0);

@@ -67,7 +67,8 @@ namespace CodeEvaluator
             return true;
         }
 
-        private void EvaluateCodeWithTestCases(string code, SupportedProgrammingLanguages.Languages language, Dictionary<int, string> allInput, Dictionary<int, string> expectedOutput)
+        private void EvaluateCodeWithTestCases(string code, SupportedProgrammingLanguages.Languages language,
+			Dictionary<int, string> allInput, Dictionary<int, string> expectedOutput)
         {
             Dictionary<int, string> ActualOutput = new Dictionary<int, string>();
             if (String.IsNullOrWhiteSpace(InitiateCompileCode(code, language)))
@@ -97,7 +98,8 @@ namespace CodeEvaluator
             }
         }
 
-        private ProgramProperties GetProgramProperties(string code, SupportedProgrammingLanguages.Languages language, string AllProgramInputs)
+        private ProgramProperties GetProgramProperties(string code, SupportedProgrammingLanguages.Languages language,
+			string AllProgramInputs)
         {
             switch (language)
             {

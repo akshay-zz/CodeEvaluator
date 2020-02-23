@@ -64,6 +64,7 @@ public sealed class CsharpCodeCompiler : ICodeCompiler
     {
         Code = FormatMainMethodPramSignature(Code);
         CompilerResults results = codeDomProvider.CompileAssemblyFromSource(compilerParameters, Code.Trim());
+
         if (results.Errors.HasErrors)
         {
             ErrorMessage.Clear();
@@ -91,6 +92,8 @@ public sealed class CsharpCodeCompiler : ICodeCompiler
     // TODO: Need to implement to handle main mehtod with no argument 
     private string FormatMainMethodPramSignature(string Code)
     {
-        return System.Text.RegularExpressions.Regex.Replace(Code, "(Main).*[)]", "Main(string [] args)", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+        return System.Text.RegularExpressions.Regex.Replace(
+			Code, "(Main).*[)]", "Main(string [] args)", System.Text.RegularExpressions.RegexOptions.IgnoreCase
+		);
     }
 }
