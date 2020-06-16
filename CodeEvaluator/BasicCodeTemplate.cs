@@ -1,19 +1,21 @@
-﻿/// <summary>
-/// Provides a basic code template for programming languages
-/// </summary>
-public class BasicCodeTemplate
+﻿namespace CodeEvaluator
 {
-    public static string Csharp
-    {
-        get
-        {
-            return CsharpBasicTemplate();
-        }
-    }
+	/// <summary>
+	/// Provides a basic code template for programming languages
+	/// </summary>
+	public static class BasicCodeTemplate
+	{
+		public static string Csharp
+		{
+			get
+			{
+				return CsharpBasicTemplate();
+			}
+		}
 
-    private static string CsharpBasicTemplate()
-    {
-        return @"
+		private static string CsharpBasicTemplate()
+		{
+			return @"
 using System;
 
 namespace Solution
@@ -28,5 +30,6 @@ namespace Solution
     }
 }
 ";
-    }
+		}
+	}
 }

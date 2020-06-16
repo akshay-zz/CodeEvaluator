@@ -1,88 +1,57 @@
 ﻿using System.Collections.Generic;
 
-/// <summary>
-/// Evaluate TestCases from ExpectedOutput dictionary(int TestCaseId, string Expected Output) and ActualOutput dictionary(int TestCaseId, string Actual Output)
-/// and return a result dictionary(int TestCaseId, bool result)
-/// </summary>
-public class EvaluateTestCases
+namespace CodeEvaluator.Helper
 {
-	private Dictionary<int, bool> _ResultDictonary = new Dictionary<int, bool>();
-	private Dictionary<int, int> _TimeTakenDictonary = new Dictionary<int, int>();
-	private Dictionary<int, int> _MemoryCosumedDictonary = new Dictionary<int, int>();
 
-	private bool _AllTestcasesRanSuccessFully = true;
-
-	public bool AllTestcasesRanSuccessFully
+	/// <summary>
+	/// Evaluate TestCases from ExpectedOutput dictionary(int TestCaseId, string Expected Output) and ActualOutput dictionary(int TestCaseId, string Actual Output)
+	/// and return a result dictionary(int TestCaseId, bool result)
+	/// </summary>
+	public class EvaluateTestCases
 	{
-		get
+		public bool AllTestcasesRanSuccessFully { get; private set; } = true;
+		public Dictionary<int, bool> ResultDictonary { get; } = new Dictionary<int, bool>();
+		public Dictionary<int, int> TimeTakenDictonary { get; } = new Dictionary<int, int>();
+		public Dictionary<int, int> MemoryCosumedDictonary { get; } = new Dictionary<int, int>();
+
+
+		public EvaluateTestCases(Dictionary<int, string> expectedOutput, Dictionary<int, string> actualOutput)
 		{
-			return _AllTestcasesRanSuccessFully;
-		}
-	}
-
-	public Dictionary<int, bool> ResultDictonary
-	{
-		get
-		{
-			return _ResultDictonary;
-		}
-	}
-
-	public Dictionary<int, int> TimeTakenDictonary
-	{
-		get
-		{
-			return _TimeTakenDictonary;
-		}
-	}
-
-	public Dictionary<int, int> MemoryCosumedDictonary
-	{
-		get
-		{
-			return _MemoryCosumedDictonary;
-		}
-	}
-
-
-	public EvaluateTestCases(Dictionary<int, string> expectedOutput, Dictionary<int, string> actualOutput)
-	{
-		_AllTestcasesRanSuccessFully = true;
-		MatchInputAndOutput(expectedOutput, actualOutput);
-	}
-
-	private void MatchInputAndOutput(Dictionary<int, string> expectedOutput, Dictionary<int, string> actualOutput)
-	{
-		if (expectedOutput.Count < 1)
-		{
-			_AllTestcasesRanSuccessFully = false;
-			return;
+			AllTestcasesRanSuccessFully = true;
+			MatchInputAndOutput(expectedOutput, actualOutput);
 		}
 
-		foreach (var item in expectedOutput)
+		private void MatchInputAndOutput(Dictionary<int, string> expectedOutput, Dictionary<int, string> actualOutput)
 		{
-			string value;
-
-			if (actualOutput.TryGetValue(item.Key, out value) && 
-				ReplaceCarriageReturnWithNewline(item.Value) == ReplaceCarriageReturnWithNewline(actualOutput[item.Key])
-			)
+			if(expectedOutput.Count < 1)
 			{
-				_ResultDictonary.Add(item.Key, true);
-				_MemoryCosumedDictonary.Add(item.Key, 0);
-				_TimeTakenDictonary.Add(item.Key, 0);
+				AllTestcasesRanSuccessFully = false;
+				return;
 			}
-			else
+
+			foreach(var item in expectedOutput)
 			{
-				_AllTestcasesRanSuccessFully = false;
-				_ResultDictonary.Add(item.Key, false);
-				_MemoryCosumedDictonary.Add(item.Key, 0);
-				_TimeTakenDictonary.Add(item.Key, 0);
+				if(actualOutput.TryGetValue(item.Key, out _) &&
+					ReplaceCarriageReturnWithNewline(item.Value) == ReplaceCarriageReturnWithNewline(actualOutput[item.Key])
+				)
+				{
+					ResultDictonary.Add(item.Key, true);
+					MemoryCosumedDictonary.Add(item.Key, 0);
+					TimeTakenDictonary.Add(item.Key, 0);
+				}
+				else
+				{
+					AllTestcasesRanSuccessFully = false;
+					ResultDictonary.Add(item.Key, false);
+					MemoryCosumedDictonary.Add(item.Key, 0);
+					TimeTakenDictonary.Add(item.Key, 0);
+				}
 			}
 		}
-	}
 
-	private string ReplaceCarriageReturnWithNewline(string str)
-	{
-		return (str.Replace("\r", string.Empty)).Trim('\n');
+		private string ReplaceCarriageReturnWithNewline(string str)
+		{
+			return str.Replace("\r", string.Empty).Trim('\n');
+		}
 	}
 }

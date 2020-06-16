@@ -1,21 +1,25 @@
 ﻿using System;
 
-/// <summary>
-/// Summary description for MissingProgramPropertiesValueException
-/// </summary>
-
-[Serializable]
-public class MissingProgramPropertiesValueException : Exception
+namespace CodeEvaluator.Exception
 {
-    public MissingProgramPropertiesValueException()
-       : base("Missing any ProgramProperties value")
-    {
 
-    }
+	/// <summary>
+	/// Summary description for MissingProgramPropertiesValueException
+	/// </summary>
 
-    public MissingProgramPropertiesValueException(string propertyName)
-       : base(String.Format("Missing ProgramProperties value for {0}", propertyName))
-    {
+	[Serializable]
+	public class MissingProgramPropertiesValueException : System.Exception
+	{
+		public MissingProgramPropertiesValueException()
+		   : base("Missing any ProgramProperties value")
+		{
 
-    }
+		}
+
+		public MissingProgramPropertiesValueException(string propertyName)
+		   : base(string.Format("Missing ProgramProperties value for {0}", propertyName))
+		{
+
+		}
+	}
 }

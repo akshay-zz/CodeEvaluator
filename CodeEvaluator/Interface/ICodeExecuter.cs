@@ -1,7 +1,10 @@
-﻿/// <summary>
-/// Summary description for ICodeExecuter
-/// </summary>
-internal interface ICodeExecuter
+﻿namespace CodeEvaluator.Interface
 {
-    ExecutedCodeProperties ExecuteCode();
+	/// <summary>
+	/// Summary description for ICodeExecuter
+	/// </summary>
+	internal interface ICodeExecuter
+	{
+		ExecutedCodeProperties ExecuteCode();
+	}
 }
